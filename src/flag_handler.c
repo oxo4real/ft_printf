@@ -33,10 +33,4 @@ void	flag_handler(const char *p_format, int *p_i, int flag_data[FLAG_DATA_SIZE],
 		 	(*p_i) -= 1;
 		flag_data[IS_PRECISION] = 1;
 	}
-	else if (p_format[(*p_i)] == '#')
-		flag_data[HASH] = 1;
-	else if (p_format[(*p_i)] == '+')
-		flag_data[PLUS] = 1;
-	else if (p_format[(*p_i)] == ' ')
-		flag_data[SPACE] = 1;
 }

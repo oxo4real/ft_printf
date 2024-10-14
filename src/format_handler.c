@@ -19,19 +19,21 @@ void	format_handler(const char *p_format, int *p_i, int *p_rendu, va_list args)
 
 	steps = 0;
 	ft_bzero(flag_data, sizeof(int) * FLAG_DATA_SIZE);
-	(*p_i) += 1;
 	steps += 1;
-	while (ft_strchr("-0.*# +", p_format[(*p_i)]) || ft_isdigit(p_format[(*p_i)]))
+	while (ft_strchr("-0.*# +h", p_format[(*p_i)]) || ft_isdigit(p_format[(*p_i)]))
 	{
 		if (!ft_isdigit(p_format[(*p_i)]))
 			steps += 1;
 		else
 		 	steps += num_len(ft_atoi(&p_format[(*p_i)]));
-		flag_handler(p_format, p_i, flag_data, args);
+		if (ft_strchr("-0.*", p_format[(*p_i)]))
+			flag_handler(p_format, p_i, flag_data, args);
+		else if (ft_strchr("# +h", p_format[(*p_i)]))
+			flag_handler_bonus(p_format, p_i, flag_data);
 		(*p_i) += 1;
 	}
-	if (ft_strchr("cspdiuxX%", p_format[(*p_i)]))
-		printer(p_format[(*p_i)++], p_rendu, flag_data, args);
+	if (ft_strchr("cspdiuxX%n", p_format[(*p_i)]))
+		converter(p_format[(*p_i)++], p_rendu, flag_data, args);
 	else
 	{
 		write(1, &p_format[(*p_i) - steps], steps);

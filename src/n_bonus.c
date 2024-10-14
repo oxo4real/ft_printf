@@ -1,41 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   n_bonus.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/09 14:15:59 by marvin            #+#    #+#             */
-/*   Updated: 2024/10/09 14:15:59 by marvin           ###   ########.fr       */
+/*   Created: 2024/10/14 20:29:12 by marvin            #+#    #+#             */
+/*   Updated: 2024/10/14 20:29:12 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 #include <stdarg.h>
 
-int	ft_printf(const char *format, ...)
+void	n_bonus(int	*p_rendu, va_list args, int flag_data[FLAG_DATA_SIZE])
 {
-	va_list	args;
-	int 	rendu;
-	int		i;
+	int rendu;
 
-	va_start(args, format);
-	i = 0;
-	rendu = 0;
-	while (format[i])
-	{
-		if (format[i] != '%')
-		{
-			ft_putchar_fd(format[i], 1);
-			rendu++;
-			i++;
-		}
-		else
-		{
-			i++;
-		 	format_handler(format, &i, &rendu, args);	
-		}
-	}
-	va_end(args);
-	return (rendu);
+	rendu = (*p_rendu);
+	if (flag_data[SHORT])
+		rendu = (short)rendu;
+	(*va_arg(args, int *)) = rendu;
 }

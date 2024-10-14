@@ -1,41 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   flag_handler_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/09 14:15:59 by marvin            #+#    #+#             */
-/*   Updated: 2024/10/09 14:15:59 by marvin           ###   ########.fr       */
+/*   Created: 2024/10/14 19:16:32 by marvin            #+#    #+#             */
+/*   Updated: 2024/10/14 19:16:32 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
-#include <stdarg.h>
 
-int	ft_printf(const char *format, ...)
+void	flag_handler_bonus(const char *p_format, int *p_i, int flag_data[FLAG_DATA_SIZE])
 {
-	va_list	args;
-	int 	rendu;
-	int		i;
-
-	va_start(args, format);
-	i = 0;
-	rendu = 0;
-	while (format[i])
-	{
-		if (format[i] != '%')
-		{
-			ft_putchar_fd(format[i], 1);
-			rendu++;
-			i++;
-		}
-		else
-		{
-			i++;
-		 	format_handler(format, &i, &rendu, args);	
-		}
-	}
-	va_end(args);
-	return (rendu);
+	if (p_format[(*p_i)] == '#')
+		flag_data[HASH] = 1;
+	else if (p_format[(*p_i)] == '+')
+		flag_data[PLUS] = 1;
+	else if (p_format[(*p_i)] == ' ')
+		flag_data[SPACE] = 1;
+	else if (p_format[(*p_i)] == 'h')
+		flag_data[SHORT] = 1;
 }

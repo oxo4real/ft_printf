@@ -4,8 +4,8 @@ CFLAGS := -Wall -Wextra -Werror
 SRC_DIR := src/
 SRC_FILES := char_printer.c flag_handler.c format_handler.c ft_printf.c \
 			 hex_len.c hex_printer.c int_printer.c num_handler.c num_len.c \
-			 padding_printer.c pointer_printer.c printer.c str_printer.c \
-			 uint_printer.c
+			 padding_printer.c pointer_printer.c converter.c str_printer.c \
+			 uint_printer.c flag_handler_bonus.c n_bonus.c
 SRCS := ${addprefix $(SRC_DIR),$(SRC_FILES)}
 
 BUILD_DIR := build/
