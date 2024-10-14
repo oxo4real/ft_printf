@@ -43,9 +43,6 @@ $(LIBFT_LIB): $(LIBFT_OBJS)
 $(LIBFT_DIR)%.o: $(LIBFT_DIR)%.c
 	make -C $(LIBFT_DIR)
 
-$(LIBFT_BUILD_DIR):
-	mkdir -p $(LIBFT_BUILD_DIR)
-
 clean:
 	rm -rf $(BUILD_DIR)
 	make -C $(LIBFT_DIR) clean
