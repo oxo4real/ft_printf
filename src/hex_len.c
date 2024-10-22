@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hex_len.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aaghzal <aaghzal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 06:31:37 by marvin            #+#    #+#             */
-/*   Updated: 2024/10/12 06:31:37 by marvin           ###   ########.fr       */
+/*   Updated: 2024/10/22 11:01:02 by aaghzal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int	hex_len(unsigned long long num)
 	int	count;
 
 	count = 0;
+	if (!num)
+		return (1);
 	while (num)
 	{
 		count += 1;

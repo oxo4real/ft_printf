@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   int_printer.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aaghzal <aaghzal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 17:18:54 by marvin            #+#    #+#             */
-/*   Updated: 2024/10/11 17:18:54 by marvin           ###   ########.fr       */
+/*   Updated: 2024/10/21 15:37:40 by aaghzal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	i_printer(int num, int *p_rendu)
 {
 	char			c;
 	unsigned int	nb;
-	
+
 	nb = (unsigned int) num;
 	if (num < 0)
 	{
@@ -30,9 +30,10 @@ static void	i_printer(int num, int *p_rendu)
 	(*p_rendu) += 1;
 }
 
-static void	padding_handler(int num, int flag_data[FLAG_DATA_SIZE], int *p_rendu)
+static void	padding_handler(int num,
+				int flag_data[FLAG_DATA_SIZE], int *p_rendu)
 {
-	int width;
+	int	width;
 
 	width = flag_data[WIDTH] - flag_data[PRECISION];
 	if (flag_data[ZERO_PADDING])

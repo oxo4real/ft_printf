@@ -184,8 +184,14 @@ void	test_x(void)
 	x = 0;
 	y = 0;
 	printf("Testing: (\"\\t%%x\\n\", UINT_MAX)\n");
-	x += printf("  Or\t:\t%x\n", UINT_MAX);
-	y += ft_printf("  Ft\t:\t%x\n", UINT_MAX);
+	x += printf("  Or\t:\t%x\n", ULONG_MAX);
+	y += ft_printf("  Ft\t:\t%x\n", ULONG_MAX);
+	printf("Printf = %d, ft_printf = %d\n\n", x, y);
+	x = 0;
+	y = 0;
+	printf("Testing: (\"\\t%%X\\n\", UINT_MAX - UINT_MAX)\n");
+	x += printf("  Or\t:\t%x\n", UINT_MAX - UINT_MAX);
+	y += ft_printf("  Ft\t:\t%x\n", UINT_MAX - UINT_MAX);
 	printf("Printf = %d, ft_printf = %d\n\n", x, y);
 }
 
@@ -228,6 +234,12 @@ void	test_X(void)
 	printf("Testing: (\"\\t%%X\\n\", UINT_MAX)\n");
 	x += printf("  Or\t:\t%X\n", UINT_MAX);
 	y += ft_printf("  Ft\t:\t%X\n", UINT_MAX);
+	printf("Printf = %d, ft_printf = %d\n\n", x, y);
+	x = 0;
+	y = 0;
+	printf("Testing: (\"\\t%%X\\n\", UINT_MAX - UINT_MAX)\n");
+	x += printf("  Or\t:\t%X\n", UINT_MAX - UINT_MAX);
+	y += ft_printf("  Ft\t:\t%X\n", UINT_MAX - UINT_MAX);
 	printf("Printf = %d, ft_printf = %d\n\n", x, y);
 }
 
@@ -301,6 +313,17 @@ void	test_p(void)
 	printf("Testing: (\"\\t%%p\\n\", p)\n");
 	x += printf("  Or\t:\t%p\n", p);
 	y += ft_printf("  Ft\t:\t%p\n", p);
+	printf("Printf = %d, ft_printf = %d\n\n", x, y);
+	x = 0;
+	y = 0;
+	printf("Testing: (\"\\t%%p %%p\\n\", LONG_MIN, LONG_MAX)\n");
+	x += printf("  Or\t:\t%p %p \n", LONG_MIN, LONG_MAX);
+	y += ft_printf("  Ft\t:\t%p %p \n", LONG_MIN, LONG_MAX);
+	printf("Printf = %d, ft_printf = %d\n\n", x, y);
+	x = 0;
+	y = 0;
+	x += printf("  Or\t:\t%p \n", ULONG_LONG_MAX);
+	y += ft_printf("  Ft\t:\t%p \n", ULONG_LONG_MAX);
 	printf("Printf = %d, ft_printf = %d\n\n", x, y);
 }
 
@@ -612,27 +635,30 @@ void test_h(void)
 
 void test_n(void)
 {
-	int count2, count1, count3;
+	int count1, count3;
     short int short_count;
+	int	*conut2;
+
+	conut2 = NULL;
 
 	printf("\n----------- TEST: %%n -----------\n");
 
 	printf("\nFt:\n");
-    ft_printf("Hello%n, World!%hn%n\nHow are you?\n", &count1, &short_count, &count2);
+    ft_printf("Hello%n, World!%hn%n\nHow are you?\n", &count1, &short_count, conut2);
     
     ft_printf("Count1: %d\n", count1);
     ft_printf("Short count: %hd\n", short_count);
-    ft_printf("Count2: %d\n", count2);
+    //ft_printf("Count2: %d\n", *conut2);
 
     ft_printf("Final%n\n", &count3);
     ft_printf("Count3: %d\n", count3);
 
 	printf("\nOr:\n");
-    printf("Hello%n, World!%hn%n\nHow are you?\n", &count2, &short_count, &count1);
+    printf("Hello%n, World!%hn%n\nHow are you?\n", conut2, &short_count, &count1);
     
     printf("Count1: %d\n", count1);
     printf("Short count: %hd\n", short_count);
-    printf("Count2: %d\n", count2);
+    //printf("Count2: %d\n", *conut2);
 
     printf("Final%n\n", &count3);
     printf("Count3: %d\n", count3);
@@ -640,31 +666,31 @@ void test_n(void)
 
 int	main(void)
 {
-	// printf("\n\n========== MANDATORY TESTS ========\n\n");
-	// test_simple();
-	// test_percent();
-	// test_c();
-	// test_s();
-	// test_d();
-	// test_i();
-	// test_x();
-	// test_X();
-	// test_u();
-	// test_p();
-	// test_all();
+	printf("\n\n========== MANDATORY TESTS ========\n\n");
+	test_simple();
+	test_percent();
+	test_c();
+	test_s();
+	test_d();
+	test_i();
+	test_x();
+	test_X();
+	test_u();
+	test_p();
+	test_all();
 
-	// printf("\n\n========== BONUS TESTS ============\n\n");
-	// test_bonus_char();
-	// test_bonus_str();
-	// test_bonus_hex();
-	// test_bonus_unsigned();
-	// test_bonus_int();
-	// test_bonus_ptr();
-	// test_bonus_precision();
-	// test_extra();
-	// test_invalid_spec();
+	printf("\n\n========== BONUS TESTS ============\n\n");
+	test_bonus_char();
+	test_bonus_str();
+	test_bonus_unsigned();
+	test_bonus_int();
+	test_bonus_hex();
+	test_bonus_ptr();
+	test_bonus_precision();
+	test_extra();
+	test_invalid_spec();
 
-	// test_h();
+	test_h();
 	test_n();
 	return (0);
 }
