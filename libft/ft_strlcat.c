@@ -11,18 +11,19 @@
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <sys/_types/_size_t.h>
 
 size_t	ft_strlcat(char *dest, char *src, size_t size)
 {
 	int		i;
 	size_t	j;
-	int		dest_len;
+	size_t	dest_len;
 
 	dest_len = ft_strlen(dest);
 	i = 0;
 	if (size <= (size_t)dest_len)
 		return (size + ft_strlen(src));
-	if (size - (dest_len + 1))
+	if (size != (dest_len + 1))
 	{
 		while (dest[i] != 0)
 		{

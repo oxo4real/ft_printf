@@ -9,26 +9,36 @@ SRCS := ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c \
 SRCSB := ft_lstadd_back_bonus.c ft_lstadd_front_bonus.c ft_lstclear_bonus.c \
 		 ft_lstdelone_bonus.c ft_lstiter_bonus.c ft_lstlast_bonus.c \
 		 ft_lstmap_bonus.c ft_lstnew_bonus.c ft_lstsize_bonus.c
-OBJS := $(SRCS:.c=.o)
-OBJSB := $(SRCSB:.c=.o)
+OBJ_DIR := build/
+OBJS := ${addprefix $(OBJ_DIR),$(SRCS:.c=.o)}
+OBJSB := ${addprefix $(OBJ_DIR),$(SRCSB:.c=.o)}
 CFLAGS := -Wall -Wextra -Werror
 NAME := libft.a
 LIBC := ar rcs
-RM := rm -f
+.BONUS := $(OBJ_DIR).bonus
 
-all: $(NAME)
+all: $(OBJ_DIR) $(NAME)
+
+$(OBJ_DIR):
+	mkdir $@
 
 $(NAME): $(OBJS)
 	$(LIBC) $(NAME) $?
 
-bonus: $(NAME) $(OBJSB)
-	$(LIBC) $(NAME) $(OBJSB)
+$(OBJ_DIR)%.o: %.c libft.h
+	$(CC) -c $(CFLAGS) -o $@ $<
 
+bonus: all $(.BONUS)
+
+$(.BONUS): $(OBJSB)
+	$(LIBC) $(NAME) $?
+	@touch $(.BONUS)
+	@chmod 000 $(.BONUS)
 clean:
-	$(RM) $(OBJS) $(OBJSB)
+	@rm -rf $(OBJ_DIR)
 
 fclean: clean
-	$(RM) $(NAME) $(bonus) 
+	@rm -f $(NAME)
 
 re: fclean all
 

@@ -14,6 +14,7 @@ OBJS := ${addprefix $(BUILD_DIR),$(OBJ_FILES)}
 
 LIBFT_LIB := libft/libft.a
 LIBFT_DIR := libft/
+LIBFT_BUILD_DIR := libft/build/
 LIBFT_FILES := ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c \
 			   ft_isascii.c ft_isdigit.c ft_isprint.c ft_itoa.c ft_memchr.c \
 			   ft_memcmp.c ft_memcpy.c ft_memmove.c ft_memset.c ft_putchar_fd.c \
@@ -22,7 +23,7 @@ LIBFT_FILES := ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c \
 			   ft_strlen.c ft_strmapi.c ft_strncmp.c ft_strnstr.c ft_strrchr.c \
 			   ft_strtrim.c ft_substr.c ft_tolower.c ft_toupper.c
 LIBFT_SRCS := ${addprefix $(LIBFT_DIR),$(LIBFT_FILES)}
-LIBFT_OBJS := ${addprefix $(LIBFT_DIR),$(LIBFT_FILES:.c=.o)}
+LIBFT_OBJS := ${addprefix $(LIBFT_BUILD_DIR),$(LIBFT_FILES:.c=.o)}
 
 NAME := libftprintf.a
 
@@ -40,16 +41,16 @@ $(BUILD_DIR)%.o: $(SRC_DIR)%.c
 $(LIBFT_LIB): $(LIBFT_OBJS)
 	make -C $(LIBFT_DIR)
 	
-$(LIBFT_DIR)%.o: $(LIBFT_DIR)%.c
+$(LIBFT_BUILD_DIR)%.o: $(LIBFT_DIR)%.c
 	make -C $(LIBFT_DIR)
 
 clean:
-	rm -rf $(BUILD_DIR)
-	make -C $(LIBFT_DIR) clean
+	@rm -rf $(BUILD_DIR)
+	@make -C $(LIBFT_DIR) clean
 
 fclean: clean
-	rm -f $(NAME)
-	make -C $(LIBFT_DIR) fclean
+	@rm -f $(NAME)
+	@make -C $(LIBFT_DIR) fclean
 
 re: fclean all
 

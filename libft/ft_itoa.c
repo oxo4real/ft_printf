@@ -26,9 +26,7 @@ static void	ft_putnbr_buff(int n, char *buff, int size, int pos)
 	}
 	c = (nb % 10) + 48;
 	if (nb / 10 != 0)
-	{
 		ft_putnbr_buff(nb / 10, buff, size, pos + 1);
-	}
 	buff[size - pos] = c;
 }
 
