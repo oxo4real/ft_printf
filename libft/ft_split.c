@@ -89,6 +89,8 @@ char	**ft_split(char const *s, char c)
 	i = 0;
 	is_word = 0;
 	count = 0;
+	if (!s)
+		return (NULL);
 	while (s[i])
 	{
 		if (s[i] == c)
@@ -101,9 +103,7 @@ char	**ft_split(char const *s, char c)
 		i++;
 	}
 	arr = (char **)malloc(sizeof(char **) * (count + 1));
-	if (!arr)
-		return (NULL);
-	if (!fill_arr(arr, s, c))
+	if (!arr || !fill_arr(arr, s, c))
 		return (NULL);
 	return (arr);
 }
