@@ -6,7 +6,7 @@
 /*   By: aaghzal <aaghzal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 14:34:16 by marvin            #+#    #+#             */
-/*   Updated: 2024/11/13 09:28:16 by aaghzal          ###   ########.fr       */
+/*   Updated: 2024/11/13 11:54:47 by aaghzal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,25 +15,13 @@
 
 # include <stdarg.h>
 # include "libft/libft.h"
-
-# define WIDTH 0
-# define PRECISION 1
-# define LEFT_JUSTIFIED 2
-# define ZERO_PADDING 3
-# define IS_PRECISION 4
-# define HASH 5
-# define PLUS 6
-# define SPACE 7
-
-# define FLAG_DATA_SIZE 8
+# include "ft_printf_bonus.h"
 
 int		ft_printf(const char *format, ...);
 void	format_handler(const char *p_format,
 			int *p_i, int *p_rendu, va_list args);
 void	flag_handler(const char *p_format,
 			int *p_i, int flag_data[FLAG_DATA_SIZE], va_list args);
-void	flag_handler_bonus(const char *p_format,
-			int *p_i, int flag_data[FLAG_DATA_SIZE]);
 void	converter(char conversion, int *p_rendu,
 			int flag_data[FLAG_DATA_SIZE], va_list args);
 int		num_handler(const char *str, int *p_i);

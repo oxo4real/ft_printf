@@ -3,14 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   num_len.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aaghzal <aaghzal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/11 11:28:27 by marvin            #+#    #+#             */
-/*   Updated: 2024/10/11 11:28:27 by marvin           ###   ########.fr       */
+/*   Created: 2024/11/13 11:46:55 by aaghzal           #+#    #+#             */
+/*   Updated: 2024/11/13 12:16:16 by aaghzal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "../ft_printf.h"
 
 int	num_len(long long num)
 {
