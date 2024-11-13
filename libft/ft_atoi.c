@@ -14,23 +14,19 @@
 
 int	ft_atoi(const char *nptr)
 {
-	int	i;
-	int	signe;
-	int	num;
+	int					i;
+	int					sign;
+	unsigned long long	num;
 
 	num = 0;
-	signe = 1;
+	sign = 1;
 	i = 0;
 	while ((nptr[i] >= 9 && nptr[i] <= 13) || nptr[i] == ' ')
-	{
 		i++;
-	}
 	if (nptr[i] == '-' || nptr[i] == '+')
 	{
 		if (nptr[i] == '-')
-		{
-			signe = -1;
-		}
+			sign = -1;
 		i++;
 	}
 	while (ft_isdigit(nptr[i]))
@@ -38,5 +34,9 @@ int	ft_atoi(const char *nptr)
 		num = num * 10 + (nptr[i] - '0');
 		i++;
 	}
-	return (num * signe);
+	if (sign == 1 && num >= 9223372036854775807)
+		return (-1);
+	if (sign == -1 && num > 9223372036854775807)
+		return (0);
+	return ((int)num * sign);
 }

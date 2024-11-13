@@ -6,7 +6,7 @@
 /*   By: aaghzal <aaghzal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 17:50:37 by marvin            #+#    #+#             */
-/*   Updated: 2024/10/22 11:33:46 by aaghzal          ###   ########.fr       */
+/*   Updated: 2024/11/13 10:35:15 by aaghzal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,10 @@ void	format_handler(const char *p_format, int *p_i,
 	int	flag_data[FLAG_DATA_SIZE];
 
 	ft_bzero(flag_data, sizeof(int) * FLAG_DATA_SIZE);
-	while (ft_strchr("-0.*# +h", p_format[(*p_i)])
+	while (ft_strchr("-0.# +", p_format[(*p_i)])
 		|| ft_isdigit(p_format[(*p_i)]))
 	{
-		if (ft_strchr("-0.*", p_format[(*p_i)]))
-			flag_handler(p_format, p_i, flag_data, args);
-		else if (ft_strchr("# +h", p_format[(*p_i)]))
+		if (ft_strchr("-0.# +", p_format[(*p_i)]))
 			flag_handler_bonus(p_format, p_i, flag_data);
 		else if (ft_isdigit(p_format[(*p_i)]))
 		{
@@ -33,7 +31,7 @@ void	format_handler(const char *p_format, int *p_i,
 		}
 		(*p_i) += 1;
 	}
-	if (ft_strchr("cspdiuxX%n", p_format[(*p_i)]))
+	if (ft_strchr("cspdiuxX%", p_format[(*p_i)]))
 		converter(p_format[(*p_i)++], p_rendu, flag_data, args);
 	else
 		char_printer(p_format[(*p_i)++], flag_data, p_rendu);

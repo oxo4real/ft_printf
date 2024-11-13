@@ -5,7 +5,7 @@ SRC_DIR := src/
 SRC_FILES := char_printer.c flag_handler.c format_handler.c ft_printf.c \
 			 hex_len.c hex_printer.c int_printer.c num_handler.c num_len.c \
 			 padding_printer.c pointer_printer.c converter.c str_printer.c \
-			 uint_printer.c flag_handler_bonus.c n_bonus.c
+			 uint_printer.c flag_handler_bonus.c
 SRCS := ${addprefix $(SRC_DIR),$(SRC_FILES)}
 
 BUILD_DIR := build/
@@ -35,13 +35,13 @@ $(NAME): $(LIBFT_OBJS) $(OBJS)
 $(BUILD_DIR):
 	mkdir -p $(BUILD_DIR)
 
-$(BUILD_DIR)%.o: $(SRC_DIR)%.c
+$(BUILD_DIR)%.o: $(SRC_DIR)%.c ft_printf.h $(LIBFT_LIB)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(LIBFT_LIB): $(LIBFT_OBJS)
 	make -C $(LIBFT_DIR)
-	
-$(LIBFT_BUILD_DIR)%.o: $(LIBFT_DIR)%.c
+
+$(LIBFT_BUILD_DIR)%.o: $(LIBFT_DIR)%.c $(LIBFT_DIR)libft.h
 	make -C $(LIBFT_DIR)
 
 clean:

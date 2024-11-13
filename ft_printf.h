@@ -6,7 +6,7 @@
 /*   By: aaghzal <aaghzal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 14:34:16 by marvin            #+#    #+#             */
-/*   Updated: 2024/10/21 15:52:10 by aaghzal          ###   ########.fr       */
+/*   Updated: 2024/11/13 09:28:16 by aaghzal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,8 @@
 # define HASH 5
 # define PLUS 6
 # define SPACE 7
-# define SHORT 8
 
-# define FLAG_DATA_SIZE 9
+# define FLAG_DATA_SIZE 8
 
 int		ft_printf(const char *format, ...);
 void	format_handler(const char *p_format,

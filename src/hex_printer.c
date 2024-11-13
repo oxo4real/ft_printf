@@ -6,7 +6,7 @@
 /*   By: aaghzal <aaghzal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 17:40:52 by marvin            #+#    #+#             */
-/*   Updated: 2024/10/22 11:57:58 by aaghzal          ###   ########.fr       */
+/*   Updated: 2024/11/13 09:27:13 by aaghzal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,12 @@ static void	x_printer(unsigned long long num, int *p_rendu, char conversion)
 }
 
 static void	padding_handler(int flag_data[FLAG_DATA_SIZE],
-				int *p_rendu, char conversion, unsigned long long num)
+				int *p_r, char conversion, unsigned long long num)
 {
-	int	width;
-
-	width = flag_data[WIDTH] - flag_data[PRECISION];
 	if (flag_data[ZERO_PADDING])
 	{
+		if (flag_data[IS_PRECISION])
+			padding_printer(' ', flag_data[WIDTH] - flag_data[PRECISION], p_r);
 		if ((flag_data[HASH] && num > 0) || conversion == 'p')
 		{
 			if (conversion == 'X')
@@ -43,11 +42,12 @@ static void	padding_handler(int flag_data[FLAG_DATA_SIZE],
 			else
 				ft_putstr_fd("0x", 1);
 		}
-		padding_printer('0', width, p_rendu);
+		if (!flag_data[IS_PRECISION])
+			padding_printer('0', flag_data[WIDTH] - flag_data[PRECISION], p_r);
 	}
 	else
 	{
-		padding_printer(' ', width, p_rendu);
+		padding_printer(' ', flag_data[WIDTH] - flag_data[PRECISION], p_r);
 		if ((flag_data[HASH] && num > 0) || conversion == 'p')
 		{
 			if (conversion == 'X')
@@ -58,21 +58,21 @@ static void	padding_handler(int flag_data[FLAG_DATA_SIZE],
 	}
 }
 
-void	hex_printer(unsigned long long num,
+void	hex_printer(unsigned long long n,
 			int flag_data[FLAG_DATA_SIZE], int *p_rendu, char conversion)
 {
-	if (flag_data[PRECISION] < hex_len(num))
-		flag_data[PRECISION] = hex_len(num);
+	if ((n || !flag_data[IS_PRECISION]) && flag_data[PRECISION] < hex_len(n))
+		flag_data[PRECISION] = hex_len(n);
 	if (!flag_data[LEFT_JUSTIFIED])
 	{
-		if ((flag_data[HASH] && num > 0) || conversion == 'p')
+		if ((flag_data[HASH] && n > 0) || conversion == 'p')
 		{
 			flag_data[WIDTH] -= 2;
 			(*p_rendu) += 2;
 		}
-		padding_handler(flag_data, p_rendu, conversion, num);
+		padding_handler(flag_data, p_rendu, conversion, n);
 	}
-	else if ((flag_data[HASH] && num > 0) || conversion == 'p')
+	else if ((flag_data[HASH] && n > 0) || conversion == 'p')
 	{
 		if (conversion == 'X')
 			ft_putstr_fd("0X", 1);
@@ -81,8 +81,9 @@ void	hex_printer(unsigned long long num,
 		flag_data[WIDTH] -= 2;
 		(*p_rendu) += 2;
 	}
-	padding_printer('0', flag_data[PRECISION] - hex_len(num), p_rendu);
-	x_printer(num, p_rendu, conversion);
+	padding_printer('0', flag_data[PRECISION] - hex_len(n), p_rendu);
+	if (n || flag_data[PRECISION])
+		x_printer(n, p_rendu, conversion);
 	if (flag_data[LEFT_JUSTIFIED])
 		padding_printer(' ', flag_data[WIDTH] - flag_data[PRECISION], p_rendu);
 }
