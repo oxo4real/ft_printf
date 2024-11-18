@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <sys/_types/_size_t.h>
 
 size_t	ft_strlcat(char *dest, char *src, size_t size)
 {

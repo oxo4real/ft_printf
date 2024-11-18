@@ -6,12 +6,11 @@
 /*   By: aaghzal <aaghzal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 14:15:59 by marvin            #+#    #+#             */
-/*   Updated: 2024/10/22 13:22:59 by aaghzal          ###   ########.fr       */
+/*   Updated: 2024/11/18 09:26:06 by aaghzal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
-#include <stdarg.h>
 
 int	ft_printf(const char *format, ...)
 {
