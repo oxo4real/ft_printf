@@ -6,7 +6,7 @@
 /*   By: aaghzal <aaghzal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 17:13:44 by marvin            #+#    #+#             */
-/*   Updated: 2024/11/12 14:01:19 by aaghzal          ###   ########.fr       */
+/*   Updated: 2024/11/19 17:29:49 by aaghzal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,16 @@ static void	s_printer(char *str, int *p_rendu, int width)
 	}
 }
 
-void	str_printer(char *str, int flag_data[FLAG_DATA_SIZE], int *p_rendu)
+void	str_printer(char *s, int flag_data[FLAG_DATA_SIZE], int *p_rendu)
 {
-	if (!str)
-		str = "(null)";
-	if (!flag_data[IS_PRECISION] || flag_data[PRECISION] > (int)ft_strlen(str))
-		flag_data[PRECISION] = ft_strlen(str);
+	if (!s)
+		s = "(null)";
+	if (!flag_data[IS_PRECISION] || flag_data[PRECISION] > (int)ft_strlen(s))
+		flag_data[PRECISION] = ft_strlen(s);
 	if (!flag_data[LEFT_JUSTIFIED])
 		padding_printer(' ',
 			flag_data[WIDTH] - flag_data[PRECISION], p_rendu);
-	s_printer(str, p_rendu, flag_data[PRECISION]);
+	s_printer(s, p_rendu, flag_data[PRECISION]);
 	if (flag_data[LEFT_JUSTIFIED])
 		padding_printer(' ',
 			flag_data[WIDTH] - flag_data[PRECISION], p_rendu);
