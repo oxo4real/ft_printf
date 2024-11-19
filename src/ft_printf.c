@@ -6,11 +6,12 @@
 /*   By: aaghzal <aaghzal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 14:15:59 by marvin            #+#    #+#             */
-/*   Updated: 2024/11/18 09:26:06 by aaghzal          ###   ########.fr       */
+/*   Updated: 2024/11/19 15:21:32 by aaghzal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
+#include <stdio.h>
 
 int	ft_printf(const char *format, ...)
 {
@@ -18,7 +19,7 @@ int	ft_printf(const char *format, ...)
 	int		rendu;
 	int		i;
 
-	if (write(1, "", 0) < 0)
+	if (stdout->_file == -1)
 		return (-1);
 	va_start(args, format);
 	i = 0;
