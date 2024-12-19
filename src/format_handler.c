@@ -6,7 +6,7 @@
 /*   By: aaghzal <aaghzal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 17:50:37 by marvin            #+#    #+#             */
-/*   Updated: 2024/11/13 13:54:48 by aaghzal          ###   ########.fr       */
+/*   Updated: 2024/12/19 12:44:24 by aaghzal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,6 @@ void	format_handler(const char *p_format, int *p_i,
 	}
 	if (ft_strchr("cspdiuxX%", p_format[(*p_i)]))
 		converter(p_format[(*p_i)++], p_rendu, flag_data, args);
-	else
+	else if (p_format[(*p_i)] != '\0')
 		char_printer(p_format[(*p_i)++], flag_data, p_rendu);
 }
